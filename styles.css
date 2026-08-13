@@ -868,3 +868,233 @@ section {
     display: flex;
     align-items: center;
 }
+
+/* ========================================
+   EXPERIENCE HIGHLIGHTS SECTION
+   ======================================== */
+
+.experience {
+    background: #f8f9fa;
+    padding: 80px 0;
+}
+
+.section-subtitle {
+    text-align: center;
+    color: #7f8c8d;
+    font-size: 1.1rem;
+    margin-top: -15px;
+    margin-bottom: 50px;
+}
+
+/* Experience Intro */
+.experience-intro {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    background: white;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    margin-bottom: 50px;
+    flex-wrap: wrap;
+}
+
+.experience-badge {
+    background: linear-gradient(135deg, #2c3e50, #34495e);
+    color: white;
+    padding: 20px 30px;
+    border-radius: 10px;
+    text-align: center;
+    min-width: 120px;
+    flex-shrink: 0;
+}
+
+.badge-number {
+    display: block;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #3498db;
+    line-height: 1;
+}
+
+.badge-label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #ecf0f1;
+}
+
+.experience-text {
+    font-size: 1.1rem;
+    color: #34495e;
+    line-height: 1.8;
+    margin: 0;
+    flex: 1;
+}
+
+.experience-text strong {
+    color: #2c3e50;
+}
+
+/* Competencies */
+.competencies-title,
+.results-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.8rem;
+    color: #2c3e50;
+    margin-bottom: 25px;
+    text-align: center;
+    position: relative;
+}
+
+.competencies-title::after,
+.results-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: #3498db;
+    margin: 10px auto 0;
+}
+
+.competencies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin-bottom: 50px;
+}
+
+.competency-card {
+    background: white;
+    padding: 25px 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    border-left: 4px solid #3498db;
+    transition: transform 0.3s;
+}
+
+.competency-card:hover {
+    transform: translateY(-5px);
+}
+
+.competency-icon {
+    font-size: 2rem;
+    margin-bottom: 12px;
+}
+
+.competency-card h4 {
+    font-family: 'Montserrat', sans-serif;
+    color: #2c3e50;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+
+.competency-card p {
+    color: #34495e;
+    line-height: 1.7;
+    font-size: 0.95rem;
+}
+
+.competency-card strong {
+    color: #2980b9;
+}
+
+/* Results Grid */
+.results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+}
+
+.result-card {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    text-align: center;
+    border-top: 4px solid #2980b9;
+    transition: transform 0.3s;
+}
+
+.result-card:hover {
+    transform: translateY(-5px);
+}
+
+.result-number {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: #2980b9;
+    line-height: 1;
+    margin-bottom: 10px;
+}
+
+.result-card:nth-child(2) .result-number {
+    color: #27ae60;
+}
+
+.result-card:nth-child(3) .result-number {
+    color: #e67e22;
+}
+
+.result-card:nth-child(4) .result-number {
+    font-size: 2.5rem;
+    color: #8e44ad;
+}
+
+.result-card h4 {
+    font-family: 'Montserrat', sans-serif;
+    color: #2c3e50;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+
+.result-card p {
+    color: #34495e;
+    line-height: 1.7;
+    font-size: 0.95rem;
+}
+
+.result-card strong {
+    color: #2c3e50;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .experience-intro {
+        flex-direction: column;
+        text-align: center;
+        padding: 25px;
+    }
+    
+    .experience-badge {
+        width: 100%;
+    }
+    
+    .competencies-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .results-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .competencies-title,
+    .results-title {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .results-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .result-number {
+        font-size: 2.2rem;
+    }
+    
+    .experience-text {
+        font-size: 1rem;
+    }
+}
