@@ -68,7 +68,6 @@ function setupSmoothScrolling() {
 }
 
 // 3. Contact Form Handling
-// 3. Contact Form Handling
 function setupContactForm() {
     const form = document.getElementById('consultationForm');
 
@@ -90,7 +89,7 @@ function setupContactForm() {
             const formData = new FormData(form);
 
             // YOUR WEB3FORMS ACCESS KEY
-            formData.append('access_key', 755eb893-ed2d-474e-9676-794f8b8d563d);
+            formData.append('access_key', '755eb893-ed2d-474e-9676-794f8b8d563d');
 
             formData.append(
                 'subject',
