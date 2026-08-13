@@ -68,66 +68,71 @@ function setupSmoothScrolling() {
 }
 
 // 3. Contact Form Handling
+// 3. Contact Form Handling
 function setupContactForm() {
     const form = document.getElementById('consultationForm');
-    
+
     if (form) {
-        form.addEventListener('submit', function(e) {
+        form.addEventListener('submit', async function(e) {
             e.preventDefault();
-            
-            // Get form data
-            const formData = new FormData(this);
-            const data = {
-                name: formData.get('name'),
-                company: formData.get('company'),
-                email: formData.get('email'),
-                description: formData.get('description'),
-                timestamp: new Date().toISOString()
-            };
-            
-            // Basic validation
-            if (!data.name || !data.email || !data.description) {
-                alert('Please fill in all required fields.');
-                return;
-            }
-            
-            // Show loading state
+
             const submitBtn = this.querySelector('button[type="submit"]');
             const originalText = submitBtn.innerHTML;
+
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
             submitBtn.disabled = true;
-            
-            // Simulate form submission (replace with actual API call)
-            setTimeout(() => {
-                // Success message
-                alert('Thank you! Your consultation request has been submitted.\nWe will contact you within 24 hours.');
-                
-                // Reset form
-                form.reset();
-                
-                // Restore button
+
+            const formData = new FormData(form);
+
+            // YOUR WEB3FORMS ACCESS KEY
+            formData.append('access_key', 755eb893-ed2d-474e-9676-794f8b8d563d);
+
+            formData.append(
+                'subject',
+                'New Consultation Request - KC Problem Solving'
+            );
+
+            try {
+                const response = await fetch(
+                    'https://api.web3forms.com/submit',
+                    {
+                        method: 'POST',
+                        body: formData
+                    }
+                );
+
+                const result = await response.json();
+
+                if (result.success) {
+                    alert(
+                        'Thank you! Your consultation request has been submitted.\n' +
+                        'We will contact you within 24 hours.'
+                    );
+
+                    form.reset();
+                } else {
+                    alert(
+                        'Sorry, something went wrong. Please try again.'
+                    );
+                }
+
+            } catch (error) {
+                console.error('Form submission error:', error);
+
+                alert(
+                    'Sorry, we could not submit your request. Please try again.'
+                );
+
+            } finally {
                 submitBtn.innerHTML = originalText;
                 submitBtn.disabled = false;
-                
-                // Log for demo
-                console.log('Form submitted:', data);
-                
-                // Save to localStorage for demo
-                saveFormSubmission(data);
-                
-            }, 1500);
+            }
         });
-    }
-}
-
-// Save form submission (demo only)
-function saveFormSubmission(data) {
-    try {
-        const submissions = JSON.parse(localStorage.getItem('kcps_submissions') || '[]');
-        submissions.push(data);
-        localStorage.setItem('kcps_submissions', JSON.stringify(submissions));
-    } catch (e) {
-        console.log('Could not save submission:', e);
     }
 }
 
