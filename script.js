@@ -102,8 +102,8 @@ function setupContactForm() {
                 const successMessage = document.createElement('div');
                 successMessage.className = 'form-success-message';
                 successMessage.innerHTML =
-                    '<strong>Thank you!</strong><br>' +
-                    'Your consultation request has been submitted.<br>' +
+                    '<strong>✓ Request Submitted Successfully</strong>' +
+                    'Thank you! We have received your consultation request. ' +
                     'We will get back to you within 24 hours.';
 
                 form.parentNode.insertBefore(
