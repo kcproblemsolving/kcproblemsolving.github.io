@@ -72,65 +72,23 @@ function setupContactForm() {
     const form = document.getElementById('consultationForm');
 
     if (form) {
-        form.addEventListener('submit', async function(e) {
-            e.preventDefault();
-
-            const submitBtn = this.querySelector('button[type="submit"]');
-            const originalText = submitBtn.innerHTML;
+        form.addEventListener('submit', function(e) {
 
             if (!form.checkValidity()) {
+                e.preventDefault();
                 form.reportValidity();
                 return;
             }
 
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-            submitBtn.disabled = true;
+            const submitBtn = this.querySelector('button[type="submit"]');
 
-            const formData = new FormData(form);
-
-            // YOUR WEB3FORMS ACCESS KEY
-            formData.append('access_key', '755eb893-ed2d-474e-9676-794f8b8d563d');
-
-            formData.append(
-                'subject',
-                'New Consultation Request - KC Problem Solving'
-            );
-
-            try {
-                const response = await fetch(
-                    'https://api.web3forms.com/submit',
-                    {
-                        method: 'POST',
-                        body: formData
-                    }
-                );
-
-                const result = await response.json();
-
-                if (result.success) {
-                    alert(
-                        'Thank you! Your consultation request has been submitted.\n' +
-                        'We will contact you within 24 hours.'
-                    );
-
-                    form.reset();
-                } else {
-                    alert(
-                        'Sorry, something went wrong. Please try again.'
-                    );
-                }
-
-            } catch (error) {
-                console.error('Form submission error:', error);
-
-                alert(
-                    'Sorry, we could not submit your request. Please try again.'
-                );
-
-            } finally {
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
+            if (submitBtn) {
+                submitBtn.innerHTML =
+                    '<i class="fas fa-spinner fa-spin"></i> Sending...';
+                submitBtn.disabled = true;
             }
+
+            // The form will now submit directly to Zoho Forms.
         });
     }
 }
