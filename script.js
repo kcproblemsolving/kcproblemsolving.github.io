@@ -87,22 +87,38 @@ function setupContactForm() {
                 '<i class="fas fa-spinner fa-spin"></i> Sending...';
             submitBtn.disabled = true;
 
-            // Submit the form to Zoho inside the hidden iframe
-            form.submit();
+            // Submit to Zoho hidden iframe
+            HTMLFormElement.prototype.submit.call(form);
 
-            // Give Zoho a moment to receive the submission
+            // Show success message after Zoho receives the form
             setTimeout(function() {
+
                 form.reset();
 
-                alert(
-                    'Thank you! Your consultation request has been submitted.\n\n' +
-                    'We will contact you within 24 hours.'
+                submitBtn.innerHTML =
+                    '<i class="fas fa-check"></i> Request Submitted';
+
+                // Show success message on YOUR website
+                const successMessage = document.createElement('div');
+                successMessage.className = 'form-success-message';
+                successMessage.innerHTML =
+                    '<strong>Thank you!</strong><br>' +
+                    'Your consultation request has been submitted.<br>' +
+                    'We will get back to you within 24 hours.';
+
+                form.parentNode.insertBefore(
+                    successMessage,
+                    form.nextSibling
                 );
 
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
+                // Remove message after 8 seconds
+                setTimeout(function() {
+                    successMessage.remove();
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                }, 8000);
 
-            }, 1500);
+            }, 2000);
         });
     }
 }
