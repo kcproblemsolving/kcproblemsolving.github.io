@@ -72,7 +72,7 @@ function setupContactForm() {
     const form = document.getElementById('consultationForm');
 
     if (form) {
-        form.addEventListener('submit', async function(e) {
+        form.addEventListener('submit', function(e) {
             e.preventDefault();
 
             if (!form.checkValidity()) {
@@ -87,38 +87,22 @@ function setupContactForm() {
                 '<i class="fas fa-spinner fa-spin"></i> Sending...';
             submitBtn.disabled = true;
 
-            const formData = new FormData(form);
+            // Submit the form to Zoho inside the hidden iframe
+            form.submit();
 
-            try {
-                const response = await fetch(form.action, {
-                    method: 'POST',
-                    body: formData
-                });
-
-                if (response.ok) {
-                    form.reset();
-
-                    alert(
-                        'Thank you! Your consultation request has been submitted.\n\n' +
-                        'We will contact you within 24 hours.'
-                    );
-                } else {
-                    alert(
-                        'Sorry, something went wrong. Please try again.'
-                    );
-                }
-
-            } catch (error) {
-                console.error('Form submission error:', error);
+            // Give Zoho a moment to receive the submission
+            setTimeout(function() {
+                form.reset();
 
                 alert(
-                    'Sorry, we could not submit your request. Please try again.'
+                    'Thank you! Your consultation request has been submitted.\n\n' +
+                    'We will contact you within 24 hours.'
                 );
 
-            } finally {
                 submitBtn.innerHTML = originalText;
                 submitBtn.disabled = false;
-            }
+
+            }, 1500);
         });
     }
 }
