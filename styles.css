@@ -587,6 +587,24 @@ section {
     border-color: #3498db;
 }
 
+/* Form Success Message */
+.form-success-message {
+    margin-top: 20px;
+    padding: 18px 20px;
+    border: 1px solid #b7dfc5;
+    border-radius: 8px;
+    background: #f0faf3;
+    color: #245c35;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.form-success-message strong {
+    font-size: 17px;
+    display: block;
+    margin-bottom: 4px;
+}
+
 /* Footer */
 .footer {
     background: #2c3e50;
