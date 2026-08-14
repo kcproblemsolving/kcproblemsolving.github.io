@@ -72,23 +72,53 @@ function setupContactForm() {
     const form = document.getElementById('consultationForm');
 
     if (form) {
-        form.addEventListener('submit', function(e) {
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
 
             if (!form.checkValidity()) {
-                e.preventDefault();
                 form.reportValidity();
                 return;
             }
 
-            const submitBtn = this.querySelector('button[type="submit"]');
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
 
-            if (submitBtn) {
-                submitBtn.innerHTML =
-                    '<i class="fas fa-spinner fa-spin"></i> Sending...';
-                submitBtn.disabled = true;
+            submitBtn.innerHTML =
+                '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            submitBtn.disabled = true;
+
+            const formData = new FormData(form);
+
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (response.ok) {
+                    form.reset();
+
+                    alert(
+                        'Thank you! Your consultation request has been submitted.\n\n' +
+                        'We will contact you within 24 hours.'
+                    );
+                } else {
+                    alert(
+                        'Sorry, something went wrong. Please try again.'
+                    );
+                }
+
+            } catch (error) {
+                console.error('Form submission error:', error);
+
+                alert(
+                    'Sorry, we could not submit your request. Please try again.'
+                );
+
+            } finally {
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
             }
-
-            // The form will now submit directly to Zoho Forms.
         });
     }
 }
