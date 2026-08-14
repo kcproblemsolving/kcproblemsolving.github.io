@@ -405,23 +405,53 @@
                     <h3>Ready to stabilize your production and eliminate chronic issues?</h3>
 					<h3>Request a Consultation</h3>
                     <p class="form-subtitle">Briefly describe the issue and we'll get back to you.</p>
-                    <form class="contact-form" id="consultationForm">
-                        <div class="form-group">
-                            <input type="text" id="name" name="name" placeholder="Your Name" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" id="company" name="company" placeholder="Company" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" id="email" name="email" placeholder="Email" required>
-                        </div>
-                        <div class="form-group">
-                            <textarea id="description" name="description" placeholder="Brief description of the issue" rows="4" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-block">
-                            <i class="fas fa-paper-plane"></i> Submit Request
-                        </button>
-                    </form>
+					<form class="contact-form" id="consultationForm"
+					      action="https://forms.zohopublic.ca/infokcproble1/form/KCProblemSolving/formperma/_SFKp7FDdg0YAt-dLadiLRrYX6xn5kivqgtKCGm94kA/htmlRecords/submit"
+					      method="POST"
+					      accept-charset="UTF-8"
+					      enctype="multipart/form-data">
+					
+					    <input type="hidden" name="zf_referrer_name" value="">
+					    <input type="hidden" name="zf_redirect_url" value="">
+					    <input type="hidden" name="zc_gad" value="">
+					
+					    <div class="form-group">
+					        <input type="text"
+					               id="name"
+					               name="SingleLine"
+					               placeholder="Your Name"
+					               required>
+					    </div>
+					
+					    <div class="form-group">
+					        <input type="text"
+					               id="company"
+					               name="SingleLine1"
+					               placeholder="Company"
+					               required>
+					    </div>
+					
+					    <div class="form-group">
+					        <input type="email"
+					               id="email"
+					               name="Email"
+					               placeholder="Email"
+					               required>
+					    </div>
+					
+					    <div class="form-group">
+					        <textarea id="description"
+					                  name="MultiLine"
+					                  placeholder="Brief description of the issue"
+					                  rows="4"
+					                  required></textarea>
+					    </div>
+					
+					    <button type="submit" class="btn btn-primary btn-block">
+					        <i class="fas fa-paper-plane"></i> Submit Request
+					    </button>
+					
+					</form>
                 </div>
             </div>
         </div>
